@@ -1,9 +1,10 @@
-# A module that connects to the Coinbase server using the Websockex library. Of single purpose.
+# A module that connects to the Coinbase API server using the Websockex library, then 'streams' incoming price data.
 # We've utilized 'use' tool in WebSockex to inject WebSockex functionalities into our module.
-defmodule Coinbase.Client do
+defmodule Coinbase.Streamer do
   use WebSockex
 
-  @url "wss://ws-feed.pro.coinbase.com"
+  # @url "wss://ws-feed.pro.coinbase.com" -> old websocket URL
+  @url "wss://ws-feed.exchange.coinbase.com"
 
 # A behaviour module which directly starts the supervisor with a list of
 # children via start_link/2, or you may define a module-based supervisor that implements
@@ -21,7 +22,7 @@ defmodule Coinbase.Client do
 # after both the initial connection or a reconnect.
 # Our handle_connect/2 callback is called when the client is connected.
   def handle_connect(_conn, state) do
-    IO.puts "Connected!"
+    IO.puts "Connected. Initiating crypto price stream."
     {:ok, state}
   end
 

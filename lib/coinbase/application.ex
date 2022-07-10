@@ -9,7 +9,7 @@ defmodule Coinbase.Application do
     children = [
       # Starts a worker by calling: Coinbase.Worker.start_link(arg)
       # {Coinbase.Worker, arg}
-      {Coinbase.Client, ["BCH-USD"]}
+      # {Coinbase.Client, ["ETH-USD"]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
