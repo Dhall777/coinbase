@@ -16,7 +16,9 @@ end
 ```
 
 
-## Starting the price livestream to console [streamer.ex worker streams real-time prices from Coinbase API)
+## Starting the price livestream to console 
+
+Our streamer.ex worker streams real-time prices from Coinbase API.
 
 1. Navigate to the ~/lib/coinbase/application.ex file
 2. Uncomment line 12 to expose the example worker
