@@ -16,4 +16,25 @@ defmodule Coinbase.Wallet do
 
     Aurum.Coinbase.post(buy_string, %{amount: 10, currency: "USD"})
   end
+
+
+# Buy $20 of Cardano
+  def buy_ada do
+    ada_account = Aurum.Coinbase.get("/v2/accounts/ada")
+    ada_resource = ada_account["data"]["resource_path"]
+    buy_string = ada_resource <> "/buys"
+
+    Aurum.Coinbase.post(buy_string, %{amount: 20, currency: "USD"})
+  end
+
+  # Buy $50 of Bitcoin
+  def buy_btc do
+    btc_account = Aurum.Coinbase.get("/v2/accounts/btc")
+    btc_resource = btc_account["data"]["resource_path"]
+    buy_string = btc_resource <> "/buys"
+
+    Aurum.Coinbase.post(buy_string, %{amount: 50, currency: "USD"})
+  end
+
+
 end

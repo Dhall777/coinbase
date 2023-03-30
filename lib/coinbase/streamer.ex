@@ -3,8 +3,8 @@
 defmodule Coinbase.Streamer do
   use WebSockex
 
-  # @url "wss://ws-feed.pro.coinbase.com" -> old websocket URL
   @url "wss://ws-feed.exchange.coinbase.com"
+  # @url "wss://advanced-trade-ws.coinbase.com"
 
 # A behaviour module which directly starts the supervisor with a list of
 # children via start_link/2, or you may define a module-based supervisor that implements
@@ -79,6 +79,8 @@ defmodule Coinbase.Streamer do
 #
 # We cannot pattern match the message directly in the public function handle_frame/2 since "msg" is a JSON
 # and we need to first convert it into a Map to print trade data to stdout using Poison.decode!/1 function.
+#
+# We then use this Map to insert into our PostgresSQL DB
   defp handle_msg(%{"type" => "match"} = trade, state) do
     IO.inspect(trade)
     # Instead of printing output to terminal, stream this Map into Postgres, and plot from front-end using Ecto queries
